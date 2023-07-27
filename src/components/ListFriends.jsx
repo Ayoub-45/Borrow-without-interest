@@ -1,11 +1,10 @@
 import React from "react";
-import { Card } from "./Card";
-import { initialFriends } from "../initialFriends";
-export function ListFriends(){
+import { Friend } from "./Friend";
+export function ListFriends({friends}){
     return(
         <div className="container-cards" >
-            {initialFriends.map(friend=>{
-                return <Card key={friend.id} image={friend.image} name={friend.name} balance={friend.balance}/>
+            {friends.map(friend=>{
+                return <Friend key={friend.id} image={friend.image} fname={friend.fname} lname={friend.lname} balance={friend.balance} email={friend.email}/>
             })}
         </div> 
     )
