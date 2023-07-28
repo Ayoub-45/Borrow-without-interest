@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 export function Friend({
     fname,
     lname,
@@ -9,8 +10,8 @@ export function Friend({
     myBalance
 })
 {
+    const [friendBalance,setFriendBalance]=useState(balance)
 
-    console.log(myBalance)
     function transfer(){
         if(+myBalance>0){
             onSetMyBalance(balance=>+balance -10)
@@ -43,9 +44,9 @@ export function Friend({
                 <h3>
                     Name : {fname} {lname}
                 </h3>
-                <p>balance : ${balance}</p>
+                <p>balance : ${friendBalance}</p>
                 <p>Email : {email}</p>
-                <button className="submit" name="transfer" onClick={handleClick}>Transfer</button>
+             
                 <button className="submit" name="borrow" onClick={handleClick}> Borrow</button>
             </div>
         </div>
