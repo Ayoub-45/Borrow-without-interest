@@ -28,20 +28,26 @@ export function FormAddFriend({ onSetFriends }) {
                 break;
         }
     }
-    function handleSubmit() {
+    function handleSubmit(e) {
+        e.preventDefault();
         const id = crypto.randomUUID();
-        if (!firstname || !lastname || !email || !imageURL || !balance) return;
         const friend = {
             id: id,
             fname: firstname,
             lname: lastname,
             email: email,
+            balance: balance,
             image: `${imageURL}?=${id}`,
         };
-        console.log("hello")
+        onSetFriends((friends) => [...friends, friend]);
+        setFirstName("");
+        setLastName("");
+        setImageURL("https://i.pravatar.cc/48");
+        setEmail("");
+        setBalance("")
     }
     return (
-        <form className="form" onSubmit={handleSubmit} >
+        <form className="form" onSubmit={handleSubmit}>
             <div className="title">Welcome</div>
             <div className="subtitle">Let's create your account!</div>
             <div className="input-container ic1">
@@ -77,23 +83,25 @@ export function FormAddFriend({ onSetFriends }) {
             <div className="input-container ic2">
                 <input
                     id="email"
+                    name="email"
+                    value={email}
+                    onChange={handleChange}
                     className="input"
                     type="text"
                     placeholder=" "
                 />
-                <div class="cut cut-short"></div>
+                <div className="cut cut-short"></div>
                 <label
                     htmlFor="email"
                     name="email"
                     className="placeholder"
-                    value={email}
+                
                     onChange={handleChange}
                 >
                     Email
                 </label>
             </div>
 
-          
             <div className="input-container ic2">
                 <input
                     id="balance"
@@ -105,7 +113,7 @@ export function FormAddFriend({ onSetFriends }) {
                     placeholder=" "
                 />
                 <div className="cut cut-short"></div>
-                <label for="balance" className="placeholder">
+                <label htmlFor="balance" className="placeholder">
                     Balance
                 </label>
             </div>

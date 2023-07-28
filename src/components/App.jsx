@@ -1,24 +1,22 @@
 import React ,{useState} from "react"
-import { ListFriends } from "./ListFriends"
 import { FormAddFriend } from "./FormAddFriend"
-import { Input } from "./Input"
+import { Search } from "./Search"
 import {initialFriends} from "../initialFriends"
 import { MyBalance } from "./MyBalance"
 export function  App(){
     const [myBalance,setMyBalance]=useState(30000);
-    const [friends,setFriends]=useState(initialFriends)
+    const [friends,setFriends]=useState(initialFriends);
     return (
-        <body>
+        <div>
         <MyBalance balance={myBalance}/>
         <h1 className="heading">Borrow without Interest</h1>
         
-        <Input />
         <div className="app">
             <div className="container-cards">
-            <ListFriends friends= {friends}/>
+           <Search  friends={friends} onSetMyBalance={setMyBalance} myBalance={myBalance}/>
             </div>
         </div>
-            <FormAddFriend  onSetFriend={setFriends}/>
-        </body>
+        <FormAddFriend onSetFriends={setFriends}/>
+        </div>
     )
 }
